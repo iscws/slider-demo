@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main   # The branch on which the Workflow is run
+      - main # The branch on which the Workflow is run
 
 jobs:
   build-and-deploy:
@@ -29,10 +29,10 @@ jobs:
       - name: Build 🏭
         run: npm run build
 
-       - name: 'Deploy to GitHub Pages'
-         uses: JamesIves/github-pages-deploy-action@4.1.5
-         with:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           BRANCH: gh-pages 
-           FOLDER: out 
-           CLEAN: true  
+      - name: "Deploy to GitHub Pages" # 这里的缩进已经被修复
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: out
+          CLEAN: true
