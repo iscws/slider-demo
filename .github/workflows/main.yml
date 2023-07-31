@@ -26,13 +26,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build 🏭
-        run: npm run build
+      - name: Build and Export
+        run: |
+          npm run build
+          npm run export
 
       - name: "Deploy to GitHub Pages" # 这里的缩进已经被修复
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: .next
+          FOLDER: out
           CLEAN: true
