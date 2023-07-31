@@ -32,7 +32,7 @@ jobs:
       - name: "Deploy to GitHub Pages" # 这里的缩进已经被修复
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: out
+          FOLDER: .next
           CLEAN: true
