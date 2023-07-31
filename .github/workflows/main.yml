@@ -1,0 +1,38 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main   # The branch on which the Workflow is run
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.4
+
+      - name: Cache 💾
+        uses: actions/cache@v2
+        with:
+          path: ~/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup node environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build 🏭
+        run: npm run build
+
+       - name: 'Deploy to GitHub Pages'
+         uses: JamesIves/github-pages-deploy-action@4.1.5
+         with:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           BRANCH: gh-pages 
+           FOLDER: out 
+           CLEAN: true  
